@@ -33,6 +33,8 @@ class DefaultDeviceVersioningService extends DeviceVersioningService {
             "https://apps.apple.com/${config.appstoreCountryCode}/app/id${config.appStoreAppId}";
         launchUrl(Uri.parse(appStoreUrl));
       } else if (config.playStoreAppId != null && Platform.isAndroid) {
+        await iau.InAppUpdate.checkForUpdate();
+
         // Use Android In-App Update
         if (updateInBackground) {
           await iau.InAppUpdate.startFlexibleUpdate();
